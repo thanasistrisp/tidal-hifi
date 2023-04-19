@@ -1,0 +1,1 @@
+listen.tidal.com##+js(no-fetch-if, /\d\?country/)
