@@ -66,8 +66,7 @@
             <div class="group__option">
               <div class="group__description">
                 <h4>Block ads</h4>
-                <p>It requires MPRIS service enabled.<br>
-                Also, make sure playerctl command is installed in your system.</p>
+                <p>It adds support for ad-free playback and the ability to play videos in free accounts.</p>
               </div>
               <label class="switch">
                 <input type="checkbox" id="blockAds">
@@ -193,18 +192,6 @@
               <label class="switch">
                 <input id="mprisCheckbox" type="checkbox">
                 <span class="switch__slider"></span>
-                <script type="text/javascript">
-                  var checkbox = document.getElementById("mprisCheckbox");
-                  checkbox.addEventListener("change", function() {
-                    var blockAds = document.getElementById("blockAds");
-                   if (this.checked)
-                     blockAds.disabled = false;
-                   else {
-                     blockAds.checked = false;
-                      blockAds.disabled = true;
-                   }
-                  });
-                </script>
               </label>
             </div>
             <div class="group__option">

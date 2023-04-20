@@ -103,14 +103,7 @@ function createWindow(options = {}) {
   }
 
   // run stuff after first load
-  mainWindow.webContents.once("did-finish-load", () => {
-    // remove the upgrade button
-    setTimeout(() => {
-      mainWindow.webContents.executeJavaScript(
-        `upgrade = document.querySelector(".sidebarUpgrade--Hl7N0"); if (upgrade) { upgrade.remove(); }`
-      );
-      }, 2000);
-  });
+  mainWindow.webContents.once("did-finish-load", () => {});
 
   mainWindow.on("close", function (event) {
     if (!app.isQuiting && store.get(settings.minimizeOnClose)) {
@@ -156,13 +149,13 @@ app.on("ready", async () => {
   if (isMainInstanceOrMultipleInstancesAllowed()) {
     await components.whenReady();
 
-    const filter = { urls: ['https://listen.tidal.com/*'] };
-    session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
-    if (details.url.match(/\d\?country/))
-      callback({cancel: true});
-    else
-      callback({cancel: false});
-  });
+    if (store.get(settings.blockAds)) {
+      const filter = { urls: ["https://listen.tidal.com/*"] };
+      session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+        if (details.url.match(/\d\?country/)) callback({ cancel: true });
+        else callback({ cancel: false });
+      });
+    }
     createWindow();
     addMenu(mainWindow);
     createSettingsWindow();

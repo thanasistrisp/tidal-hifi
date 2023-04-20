@@ -329,7 +329,6 @@ function getTrackID() {
     const id = URLelement.href.replace(/[^0-9]/g, "");
     return id;
   }
-
   return undefined;
 }
 
@@ -414,23 +413,7 @@ setInterval(function () {
     isMuted = muted;
   }
 
-  /**
-   * automatically skip ads to latest possible time before 30th second (it is always constant)
-   * @param {*} artists current artist
-   */
-  function skipAds(artists) {
-    if (store.get(settings.blockAds)) {
-      if (artists === "TIDAL") {
-        if (!elements.isMuted())
-          setMuted(true);
-        const { exec } = require("child_process");
-        exec("playerctl position 29.9");
-      } else if (isMuted && elements.isMuted())
-        setMuted(false);
-    }
-  }
-
-}, 400);
+}, 1000);
 
 if (process.platform === "linux" && store.get(settings.mpris)) {
   try {

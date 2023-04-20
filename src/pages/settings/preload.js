@@ -32,7 +32,6 @@ function refreshSettings() {
   menuBar.checked = store.get(settings.menuBar);
   trayIcon.checked = store.get(settings.trayIcon);
   mpris.checked = store.get(settings.mpris);
-  blockAds.disabled = !store.get(settings.mpris);
   enableCustomHotkeys.checked = store.get(settings.enableCustomHotkeys);
   enableDiscord.checked = store.get(settings.enableDiscord);
   minimizeOnClose.checked = store.get(settings.minimizeOnClose);
