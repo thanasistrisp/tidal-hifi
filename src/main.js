@@ -1,5 +1,5 @@
 require("@electron/remote/main").initialize();
-const { app, BrowserWindow, components, globalShortcut, ipcMain, protocol } = require("electron");
+const { app, BrowserWindow, components, globalShortcut, ipcMain, protocol, session } = require("electron");
 const {
   settings,
   store,
@@ -43,6 +43,7 @@ function setFlags() {
    */
   app.commandLine.appendSwitch("disable-seccomp-filter-sandbox");
 }
+
 
 /**
  * Update the menuBarVisbility according to the store value
@@ -154,6 +155,20 @@ function addGlobalShortcuts() {
 app.on("ready", async () => {
   if (isMainInstanceOrMultipleInstancesAllowed()) {
     await components.whenReady();
+
+    // block listen.tidal.com##+js(no-fetch-if, /\d\?country/)
+    const filter = {
+      urls: ['https://listen.tidal.com/*']
+    }
+  session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+    if (details.url.includes('?country')) {
+      callback({cancel: true})
+      console.log('Blocked: ' + details.url)
+    } else {
+      callback({cancel: false})
+      console.log('Allowed: ' + details.url)
+    }
+  });
     createWindow();
     addMenu(mainWindow);
     createSettingsWindow();
