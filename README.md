@@ -4,6 +4,7 @@ Tidal-hifi
 </h1>
 
 The web version of [listen.tidal.com](https://listen.tidal.com) running in electron with hifi support thanks to widevine.
+It also supports ad-blocking thanks to uBlock Origin (https://github.com/gorhill/uBlock/wiki/Static-filter-syntax).
 
 ![tidal-hifi preview](./docs/preview.png)
 
@@ -11,24 +12,25 @@ The web version of [listen.tidal.com](https://listen.tidal.com) running in elect
 
 <!-- toc -->
 
+- [Table of contents](#table-of-contents)
 - [Installation](#installation)
-  * [Using releases](#using-releases)
-  * [Snap](#snap)
-  * [Arch Linux](#arch-linux)
-  * [Flatpak](#flatpak)
-  * [Nix](#nix)
-  * [Using source](#using-source)
+  - [Using releases](#using-releases)
+  - [Snap](#snap)
+  - [Arch Linux](#arch-linux)
+  - [Flatpak](#flatpak)
+  - [Nix](#nix)
+  - [Using source](#using-source)
 - [Features](#features)
 - [Integrations](#integrations)
-  * [Known bugs](#known-bugs)
-    + [last.fm doesn't work out of the box. Use rescrobbler as a workaround](#lastfm-doesnt-work-out-of-the-box-use-rescrobbler-as-a-workaround)
+  - [Known bugs](#known-bugs)
+    - [last.fm doesn't work out of the box. Use rescrobbler as a workaround](#lastfm-doesnt-work-out-of-the-box-use-rescrobbler-as-a-workaround)
 - [Why](#why)
 - [Why not extend existing projects?](#why-not-extend-existing-projects)
 - [Special thanks to...](#special-thanks-to)
 - [Buy me a coffee? Please don't](#buy-me-a-coffee-please-dont)
 - [Images](#images)
-  * [Settings window](#settings-window)
-  * [User setups](#user-setups)
+  - [Settings window](#settings-window)
+  - [User setups](#user-setups)
 
 <!-- tocstop -->
 

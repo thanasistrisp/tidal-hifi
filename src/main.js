@@ -156,18 +156,12 @@ app.on("ready", async () => {
   if (isMainInstanceOrMultipleInstancesAllowed()) {
     await components.whenReady();
 
-    // block listen.tidal.com##+js(no-fetch-if, /\d\?country/)
-    const filter = {
-      urls: ['https://listen.tidal.com/*']
-    }
-  session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
-    if (details.url.includes('?country')) {
-      callback({cancel: true})
-      console.log('Blocked: ' + details.url)
-    } else {
-      callback({cancel: false})
-      console.log('Allowed: ' + details.url)
-    }
+    const filter = { urls: ['https://listen.tidal.com/*'] };
+    session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+    if (details.url.match(/\d\?country/))
+      callback({cancel: true});
+    else
+      callback({cancel: false});
   });
     createWindow();
     addMenu(mainWindow);
