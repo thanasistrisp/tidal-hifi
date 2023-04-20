@@ -338,7 +338,6 @@ function getTrackID() {
 setInterval(function () {
   const title = elements.getText("title");
   const artists = elements.getArtists();
-  skipAds(artists);
   skipArtistsIfFoundInSkippedArtistsList(artists);
 
   const album = elements.getAlbumName();
